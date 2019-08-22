@@ -17,13 +17,15 @@ namespace Game
             commandBinder.Bind<OnDrag>().To<OnDragCommand>().Pooled();
             commandBinder.Bind<CheckFieldSignal>().To<CheckFieldCommand>().Pooled();
 
-
             mediationBinder.Bind<TestView>().To<TestMediator>();
+            
             StartManager startManager = GameObject.Find("Manager").GetComponent<StartManager>();
             FigurePoolManager figurePoolManager = GameObject.Find("Manager").GetComponent<FigurePoolManager>();
             injectionBinder.Bind<IManager>().ToValue(startManager).ToName(Managers.StartManager);
             injectionBinder.Bind<IManager>().ToValue(figurePoolManager).ToName(Managers.FigureManager);
+            
             injectionBinder.Bind<FieldGrid>().ToSingleton();
+            injectionBinder.Bind<FieldParams>().ToSingleton();
         }
     }
 
